@@ -4,10 +4,19 @@ const NODE_ENV = process.env.NODE_ENV || 'development';
 const webpack = require('webpack');
 
 module.exports = {
-   entry: "./home",
+   context: __dirname + '/frontend',
+   
+   entry: {
+      home: './home',
+      about: './about',
+      //common: './common' //общее пишешь и чанкс добавляет сюда же
+      //common: ['./common', '/.welcome'] //указывает что модуль велком полюбасу добавить
+   },
+   
    output: {
-      filename: "build.js",
-      library: "home"
+      path: __dirname + '/public',
+      filename: "[name].js",
+      library: "[name]"
    },
 
    watch: true,
@@ -16,12 +25,18 @@ module.exports = {
       aggregateTimeout: 100
    },
 
-   devtool: "cheap-inline-module-source-map",
+   devtool: NODE_ENV == 'development' ? "cheap-inline-module-source-map" : null,
 
    plugins: [
+      new webpack.NoEmitOnErrorsPlugin(),
       new webpack.DefinePlugin({
          NODE_ENV: JSON.stringify(NODE_ENV),
          LANG: JSON.stringify('ru')
+      }),
+      new webpack.optimize.CommonsChunkPlugin({
+         name: "common",
+         //minChunks: 2 вынесеться то что повторяеться как минимум в 2 модулях
+         //chunks: ['about','home'] вынесеться только то что в эбаут и хоум
       })
    ],
 
@@ -48,6 +63,13 @@ module.exports = {
                }
         }],
       }]
+   },
+   
+   devServer: {
+      contentBase: __dirname + "/public",
+      compress: true,
+      port: 9000
+      //   ../node_modules/.bin/webpack-dev-server
    }
 };
 
