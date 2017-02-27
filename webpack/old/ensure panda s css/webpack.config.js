@@ -7,7 +7,10 @@ const webpack = require('webpack');
 module.exports = {
    context: __dirname + '/frontend',
 
-   entry: './main',
+   entry: {
+      main: './main',
+      styles: './styles/index.css'
+   },
 
    //about: './about',
    //common: './common' //общее пишешь и чанкс добавляет сюда же
@@ -124,11 +127,12 @@ module.exports = {
    },
    
    plugins: [
-      new ExtractTextPlugin("styles.css")
-//      new ExtractTextPlugin({
-//         filename:  '[name].css',
-//         allChunks: true
-//      })
+      //new ExtractTextPlugin('[name].css', {allChunks: true}),
+      //new ExtractTextPlugin("styles.css"),[name]
+      new ExtractTextPlugin({
+         filename:  '[name].css',
+         allChunks: true
+      })
       
       //ProvidePlugin подключает библиотеки 
       //new webpack.ProvidePlugin({

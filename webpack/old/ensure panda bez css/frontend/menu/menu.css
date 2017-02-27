@@ -1,0 +1,13 @@
+@import url(../pics/pics.css);
+.menu .list {
+  display: none;
+  margin: 0;
+}
+
+.menu .list a {
+  color: blue;
+}
+
+.menu.open .list {
+  display: block;
+}
