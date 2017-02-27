@@ -7,7 +7,7 @@ module.exports = {
    context: __dirname + '/frontend',
    
    entry: {
-      app: './app'//,
+      app: './app',
       //about: './about',
       //common: './common' //общее пишешь и чанкс добавляет сюда же
       //common: ['./common', '/.welcome'] //указывает что модуль велком полюбасу добавить
@@ -26,14 +26,14 @@ module.exports = {
       aggregateTimeout: 100
    },
 
-   //devtool: NODE_ENV == 'development' ? "cheap-inline-module-source-map" : null,
+   devtool: NODE_ENV == 'development' ? "cheap-inline-module-source-map" : null,
 
    plugins: [
-      new webpack.NoEmitOnErrorsPlugin()//,
-      //new webpack.DefinePlugin({
-      //   NODE_ENV: JSON.stringify(NODE_ENV),
-      //   LANG: JSON.stringify('ru')
-      //}),
+      new webpack.NoEmitOnErrorsPlugin(),
+      new webpack.DefinePlugin({
+         NODE_ENV: JSON.stringify(NODE_ENV),
+         LANG: JSON.stringify('ru')
+      })//,
       //new webpack.optimize.CommonsChunkPlugin({
       //   name: "common",
          //minChunks: 2 вынесеться то что повторяеться как минимум в 2 модулях
@@ -64,14 +64,14 @@ module.exports = {
                }
         }],
       }]
-   }//,
+   },
    
-//   devServer: {
-//      contentBase: __dirname + "/public",
-//      compress: true,
-//      port: 9000
-//   } 
-   //   ../node_modules/.bin/webpack-dev-server
+   devServer: {
+      contentBase: __dirname + "/public",
+      compress: true,
+      port: 9000
+      //   ../node_modules/.bin/webpack-dev-server
+   }
 };
 
 if (NODE_ENV == 'production') {

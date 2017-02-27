@@ -1,19 +1,24 @@
-"use strict";
+'use strict';
 
-document.getElementById('loginButton').onclick = function () {
+let moduleName = location.pathname.slice(1);
 
-   require.ensure([], function (require) {
-      let login = require('./login');
-      login();
-   }, 'auth');
-};
+let context = require.context('./route', false, /\.js$/); //false ignoriruet vlozenie papki v route
 
-document.getElementById('logoutButton').onclick = function() {
+//let route = require('./route/' + moduleName);
 
-  require.ensure([], function(require) {
-    let logout = require('./logout');
+//let route = context('./' + moduleName);
 
-    logout();
-  }, 'auth');
+context.keys().forEach(function(path){
+   let module = context(path);
+   module();
+});
 
-};
+//let route;
+//
+//try {
+//   route = context('./' + moduleName);
+//} catch (e) {
+//  alert("da ne, ne goni bratishka");
+//}
+
+route();
