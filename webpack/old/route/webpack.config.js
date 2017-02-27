@@ -27,31 +27,18 @@ module.exports = {
       ignored: /node_modules/
    },
 
-   //devtool: NODE_ENV == 'development' ? "cheap-inline-module-source-map" : null,
+   devtool: NODE_ENV == 'development' ? "cheap-inline-module-source-map" : null,
 
    plugins: [
-      //ProvidePlugin подключает библиотеки 
-      //new webpack.ProvidePlugin({
-      //pluck: 'lodash/collection/pluck',
-      //   _: 'lodash'
-      //})
-      
-      //ContextReplacementPlugin подгружает с плагина только ru и en-gb
-      //new webpack.ContextReplacementPlugin( /node_modules\/moment\/locale/, /ru|en-gb/)
-      
-      //NoEmitOnErrorsPlugin если ошибка то не компиляться файлы
-      //new webpack.NoEmitOnErrorsPlugin(),
-      
+      new webpack.NoEmitOnErrorsPlugin()//,
       //new webpack.DefinePlugin({
       //   NODE_ENV: JSON.stringify(NODE_ENV),
       //   LANG: JSON.stringify('ru')
       //}),
-      
-      //CommonsChunkPlugin выносит то что повторяеться в разных модулях
       //new webpack.optimize.CommonsChunkPlugin({
       //   name: "common",
-      //   minChunks: 2, //вынесеться то что повторяеться как минимум в 2 модулях
-      //   chunks: ['about','home'] //вынесеться только то что в эбаут и хоум
+         //minChunks: 2 вынесеться то что повторяеться как минимум в 2 модулях
+         //chunks: ['about','home'] вынесеться только то что в эбаут и хоум
       //})
    ],
 
@@ -70,22 +57,15 @@ module.exports = {
       rules: [
          {
             test: /\.js$/,
-            //exclude: /(node_modules)/, 
-            include: __dirname + '/frontend',
+            exclude: /(node_modules|bower_components)/,
             use: [{
                loader: "babel-loader",
                options: {
                   presets: ["es2015"]
                }
         }],
-      }],
-      noParse: /jquery|angular/, //kakie moduli ne parsit
+      }]
    },
-   
-   //cdn lodash подключаем а в коде просто реквайрим его если надо
-//   externals: {
-//      lodash: 'lodash'   
-//   },
    
    devServer: {
       contentBase: __dirname + "/public",

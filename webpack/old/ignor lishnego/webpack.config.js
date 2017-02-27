@@ -30,14 +30,8 @@ module.exports = {
    //devtool: NODE_ENV == 'development' ? "cheap-inline-module-source-map" : null,
 
    plugins: [
-      //ProvidePlugin подключает библиотеки 
-      //new webpack.ProvidePlugin({
-      //pluck: 'lodash/collection/pluck',
-      //   _: 'lodash'
-      //})
-      
       //ContextReplacementPlugin подгружает с плагина только ru и en-gb
-      //new webpack.ContextReplacementPlugin( /node_modules\/moment\/locale/, /ru|en-gb/)
+      new webpack.ContextReplacementPlugin( /node_modules\/moment\/locale/, /ru|en-gb/)
       
       //NoEmitOnErrorsPlugin если ошибка то не компиляться файлы
       //new webpack.NoEmitOnErrorsPlugin(),
@@ -70,22 +64,15 @@ module.exports = {
       rules: [
          {
             test: /\.js$/,
-            //exclude: /(node_modules)/, 
-            include: __dirname + '/frontend',
+            exclude: /(node_modules|bower_components)/,
             use: [{
                loader: "babel-loader",
                options: {
                   presets: ["es2015"]
                }
         }],
-      }],
-      noParse: /jquery|angular/, //kakie moduli ne parsit
+      }]
    },
-   
-   //cdn lodash подключаем а в коде просто реквайрим его если надо
-//   externals: {
-//      lodash: 'lodash'   
-//   },
    
    devServer: {
       contentBase: __dirname + "/public",
