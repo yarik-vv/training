@@ -7,20 +7,19 @@ module.exports = {
    context: __dirname + '/frontend',
    
    entry: {
-      app: './app',
-      //about: './about',
+      home: './home',
+      about: './about',
       //common: './common' //общее пишешь и чанкс добавляет сюда же
       //common: ['./common', '/.welcome'] //указывает что модуль велком полюбасу добавить
    },
    
    output: {
-      path: __dirname + '/public/js',
-      publicPath: '/js/',
-      filename: "[name].js"//,
-      //library: "[name]"
+      path: __dirname + '/public',
+      filename: "[name].js",
+      library: "[name]"
    },
 
-   watch: NODE_ENV == 'development',
+   watch: true,
 
    watchOptions: {
       aggregateTimeout: 100
@@ -33,12 +32,12 @@ module.exports = {
       new webpack.DefinePlugin({
          NODE_ENV: JSON.stringify(NODE_ENV),
          LANG: JSON.stringify('ru')
-      })//,
-      //new webpack.optimize.CommonsChunkPlugin({
-      //   name: "common",
+      }),
+      new webpack.optimize.CommonsChunkPlugin({
+         name: "common",
          //minChunks: 2 вынесеться то что повторяеться как минимум в 2 модулях
          //chunks: ['about','home'] вынесеться только то что в эбаут и хоум
-      //})
+      })
    ],
 
    resolve: {
