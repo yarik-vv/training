@@ -14,9 +14,8 @@
 }
 
 .menu .list a {
-  color: blue;
+  color: red;
 }
-
 .menu.open .list {
   display: block;
 }

@@ -1,0 +1,1 @@
+.menu .title{padding:0 6px 0 16px;background:url(/assets/menu/plus.svg?98ce63f56faecc15d2ad86160ba90250) left 1px no-repeat;background-size:14px;font-weight:700;cursor:pointer}.menu .list{display:none;margin:0}.menu .list a{color:blue}.menu.open .list{display:block}.menu.open .title{background-image:url(/assets/menu/minus.svg?1b66b8289bb55a55c98c5d9d72b019ab)}

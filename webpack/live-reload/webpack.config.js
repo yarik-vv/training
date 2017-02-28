@@ -11,6 +11,9 @@ function addHash(template, hash) {
   return NODE_ENV == 'production' ?
       template.replace(/\.[^.]+$/, `.[${hash}]$&`) : template;//`${template}?hash=[${hash}]`;
 }
+function env(development, production){
+  return NODE_ENV == 'production' ? production : development;  
+}
 
 module.exports = {
    context: __dirname + '/frontend',
@@ -89,7 +92,7 @@ module.exports = {
 //               },
 //               //{loader: 'resolve-url-loader'},
 //            ]
-            // extract plugin
+             //extract plugin           
                ExtractTextPlugin.extract({
                   fallback: "style-loader",
                   use: [
@@ -129,7 +132,11 @@ module.exports = {
          {
             test:   /\.(png|jpg|svg|ttf|eot|woff|woff2)$/,
             exclude: /(node_modules)/,
-            loader: addHash('file-loader?name=[path][name].[ext]','hash:6')
+            loader: 
+              env(
+                'file-loader?name=[path][name].[ext]?[hash:4]',
+                addHash('url-loader?name=[path][name].[ext]&limit=10000','hash:6')
+              )
          }
       ]//,
       
@@ -142,7 +149,7 @@ module.exports = {
 //            rimraf.sync(compiler.options.output.path);
 //         }
 //      },
-//      new ExtractTextPlugin('[name].css'),
+      //new ExtractTextPlugin('[name].css'),
       
       //ProvidePlugin подключает библиотеки 
       //new webpack.ProvidePlugin({
@@ -168,20 +175,21 @@ module.exports = {
 //      }),
       
       
-      new HtmlWebpackPlugin({
-         title: 'home',
-         filename: 'home.html',
-         chunks: ['common','home']
-      }),
-      new HtmlWebpackPlugin({
-         title: 'about',
-         filename: 'about.html',
-         chunks: ['common','about']
-      }),
+//      new HtmlWebpackPlugin({
+//         title: 'home',
+//         filename: 'home.html',
+//         chunks: ['common','home']
+//      }),
+//      new HtmlWebpackPlugin({
+//         title: 'about',
+//         filename: 'about.html',
+//         chunks: ['common','about']
+//      }),
       
       new ExtractTextPlugin({
-         filename:  addHash('[name].css','contenthash:6'),
-         allChunks: true
+        disable: process.env.NODE_ENV=='development',
+        filename:  addHash('styles.css','contenthash:6'),
+        allChunks: true
       }),
       
       //CommonsChunkPlugin выносит то что повторяеться в разных модулях
@@ -207,12 +215,14 @@ module.exports = {
    //      lodash: 'lodash'   
    //   },
 
-   devServer: {
-      contentBase: __dirname + "/public",
-      compress: true,
-      port: 9000
-   }
-   //   ../node_modules/.bin/webpack-dev-server
+  devServer: {
+    contentBase: __dirname + "/public",
+    compress: true,
+    hot: true,
+    inline: true,
+    port: 9000
+  }
+   //   ../node_modules/.bin/webpack-dev-server --inline --hot
 };
 
 if (NODE_ENV == 'production') {

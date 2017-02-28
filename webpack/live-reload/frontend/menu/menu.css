@@ -1,7 +1,7 @@
 .menu .title {
   padding: 0 6px 0 16px;
 
-  background: url(/assets/menu/plus.98ce63.svg) left 1px no-repeat;
+  background: url(plus.svg) left 1px no-repeat;
   background-size: 14px;
 
   font-weight: bold;
@@ -16,11 +16,10 @@
 .menu .list a {
   color: blue;
 }
-
 .menu.open .list {
   display: block;
 }
 
 .menu.open .title {
-  background-image: url(/assets/menu/minus.1b66b8.svg);
+  background-image: url(minus.svg);
 }
