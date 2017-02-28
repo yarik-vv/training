@@ -1,0 +1,1 @@
+var about=webpackJsonp_name_([2],[,function(e,t,n){"use strict";t.showMenu=function(){n.e(0).then(function(e){var t=n(0).default,o=new t({title:"О сайте 2",items:[{text:"Кто придумал?",href:"#think"},{text:"Кто сделал?",href:"#do"},{text:"Кто оплатил?",href:"#pay"}]});document.body.appendChild(o.elem)}.bind(null,n)).catch(n.oe)}}],[1]);
