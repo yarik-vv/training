@@ -1,0 +1,6 @@
+{"level":"info","message":"Got request GET /echo?message=Hello","timestamp":"2017-03-10T01:25:05.457Z"}
+{"level":"debug","message":"Echo: Hello","timestamp":"2017-03-10T01:25:05.460Z"}
+{"level":"info","message":"Got request GET /echo?message=Hello","timestamp":"2017-03-10T01:25:06.091Z"}
+{"level":"debug","message":"Echo: Hello","timestamp":"2017-03-10T01:25:06.092Z"}
+{"level":"info","message":"Got request GET /echo?message=Hello","timestamp":"2017-03-10T01:25:06.617Z"}
+{"level":"debug","message":"Echo: Hello","timestamp":"2017-03-10T01:25:06.618Z"}
