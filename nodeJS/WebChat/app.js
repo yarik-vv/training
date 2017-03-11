@@ -6,6 +6,7 @@ var log = require('libs/log')(module);
 
 var app = express();
 
+app.engine('ejs', require('ejs-locals')); // layout partial block
 app.set('views', __dirname + '/template');
 app.set('view engine', 'ejs');
 
@@ -25,7 +26,7 @@ app.use(app.router);
 
 app.get('/', function(req, res, next) {
   res.render("index", {
-    body: '<b>Hello</b>'
+
   });
 });
 
