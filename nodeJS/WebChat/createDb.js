@@ -1,12 +1,22 @@
 var MongoClient = require('mongodb').MongoClient
-  , assert = require('assert');
+  , format = require('util').format;
 
-// Connection URL
-var url = 'mongodb://localhost:27017/myproject';
-// Use connect method to connect to the Server
-MongoClient.connect(url, function(err, db) {
-  assert.equal(null, err);
-  console.log("Connected correctly to server");
+MongoClient.connect('mongodb://127.0.0.1:27017/chat', function(err, db) {
+  if (err) throw err;
 
-  db.close();
+  var collection = db.collection('test_insert');
+  collection.remove({}, function(err, affected) {
+    if (err) throw err;
+
+    collection.insert({a: 2}, function(err, docs) {
+
+      var cursor = collection.find({a: 2});
+      cursor.toArray(function(err, results) {
+        console.dir(results);
+        // Let's close the db
+        db.close();
+      });
+    });
+
+  });
 });
