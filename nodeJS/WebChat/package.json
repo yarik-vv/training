@@ -12,6 +12,7 @@
   },
   "devDependencies": {
     "ejs-locals": "^1.0.2",
+    "mongoose": "^4.8.6",
     "nconf": "^0.8.4",
     "winston": "^2.3.1"
   }
