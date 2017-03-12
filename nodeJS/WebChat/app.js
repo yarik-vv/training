@@ -3,6 +3,7 @@ var http = require('http');
 var path = require('path');
 var config = require('config');
 var log = require('lib/log')(module);
+var mongoose = require('lib/mongoose');
 var HttpError = require('error').HttpError;
 
 var app = express();
@@ -23,42 +24,26 @@ app.use(express.bodyParser());  // req.body....
 
 app.use(express.cookieParser()); // req.cookies
 
+//sesii 
+var MongoStore = require('connect-mongo')(express);
+app.use(express.session({
+  secret: config.get('session:secret'), // ABCDE242342342314123421.SHA256
+  key: config.get('session:key'),
+  cookie: config.get('session:cookie'),
+  //store: new MongoStore({mongoose_connection: mongoose.connection})
+  store: new MongoStore({mongooseConnection: mongoose.connection})
+}));
+app.use(function(req, res, next) {
+  req.session.numberOfVisits = req.session.numberOfVisits + 1 || 1;
+  res.send("Visits: " + req.session.numberOfVisits);
+});
+
+
+//erors
 app.use(require('middleware/sendHttpError'));
 
 app.use(app.router);
 require("routes")(app);
-
-// app.get('/', function(req, res, next) {
-//   res.render("index", {
-
-//   });
-// });
-
-// var User = require('models/user').User;
-//   app.get('/users', function(req, res, next) {
-//     User.find({}, function(err, users) {
-//       if (err) return next(err);
-//       res.json(users);
-//     })
-//   });
-
-//   app.get('/user/:id', function(req, res, next) {
-//     // try {
-//     //   var id = new ObjectID(req.params.id);
-//     // } catch (e) {
-//     //   next(404);
-//     //   return;
-//     // }
-
-//     User.findById(req.params.id, function(err, user) { // ObjectID
-//       if (err) return next(err);
-//       if (!user) {
-//         return next(new HttpError(404, "usera netu bleat"));
-//       }
-//       res.json(user);
-//     });
-//   });
-
 
 app.use(express.static(path.join(__dirname, 'public')));
 
