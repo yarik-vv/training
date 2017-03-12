@@ -1,2 +1,2 @@
 #!/bin/bash
-NODE_PATH=. node createDb.js
+NODE_PATH=. NODE_ENV=development supervisor app.js
