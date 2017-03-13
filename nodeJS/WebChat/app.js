@@ -67,21 +67,4 @@ var server = http.createServer(app);
     log.info('Express server listening on port ' + config.get('port'));
 });
 
-
-// var io = require('socket.io')(server);
-
-// io.on('connection', function(socket){
-//   console.log('a user connected');
-// });
-
-var io = require('socket.io')(server);
-  
-io.on('connection', function(socket){
-  //console.log('a user connected');
-  
-  socket.on('message', function (text) {
-    socket.broadcast.emit('message', text);
-  });
-
-
-});
+require('./socket')(server);
