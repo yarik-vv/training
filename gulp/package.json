@@ -9,6 +9,10 @@
   "author": "yarik-vv",
   "license": "ISC",
   "devDependencies": {
-    "gulp": "github:gulpjs/gulp#4.0"
+    "gulp": "github:gulpjs/gulp#4.0",
+    "gulp-concat": "^2.6.1",
+    "gulp-concat-css": "^2.3.0",
+    "gulp-debug": "^3.1.0",
+    "gulp-if": "^2.0.2"
   }
 }
