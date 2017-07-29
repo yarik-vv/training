@@ -2,9 +2,7 @@
 
 const NODE_ENV = process.env.NODE_ENV || 'development';
 const webpack = require('webpack');
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const StyleExtHtmlWebpackPlugin = require('style-ext-html-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 
 module.exports = {
@@ -40,17 +38,9 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.scss$/,
+        test: /\.svg$/,
         include: __dirname + '/src',
-        use: ExtractTextPlugin.extract({
-          fallback: 'style',
-          use: ['css', 'sass']
-        })
-      },
-      {
-        test: /\.(json|png|jpg|svg|otf|mp4)$/,
-        exclude: /(node_modules)/,
-        loader: 'file-loader?name=[path][name].[ext]'
+        loader: 'svg-sprite-loader'
       }
     ]
   },
@@ -62,40 +52,8 @@ module.exports = {
     }),
     new CleanWebpackPlugin(__dirname + '/www/*'),
     new HtmlWebpackPlugin({
-      files: {
-        js: 'index.js',
-        css: 'styles.css',
-        chunks: {
-          custom: {}
-        }
-      },
-      chunks: ['custom'],
       filename: 'index.html',
       template: 'index.ejs',
-      minify: {
-        minifyCSS:true,
-        minifyJS:true,
-        useShortDoctype: true,
-        removeAttributeQuotes: true,
-        removeComments:true,
-        collapseWhitespace: true,
-        collapseInlineTagWhitespace: true,
-        collapseBooleanAttributes: true,
-        removeEmptyAttributes: true,
-        caseSensitive: true,
-        sortAttributes: true,
-        sortClassName: true,
-        removeScriptTypeAttributes: true,
-        removeStyleLinkTypeAttributes: true,
-        removeRedundantAttributes: true,
-        keepClosingSlash: true,
-        minifyURLs: true,
-        preventAttributesEscaping: true
-      }
-    }),
-    new ExtractTextPlugin({
-      filename: 'styles.css',
-      allChunks: true
     })
   ],
 
@@ -120,7 +78,6 @@ if (NODE_ENV == 'production') {
         NODE_ENV: JSON.stringify('production')
       }
     }),
-    new StyleExtHtmlWebpackPlugin('styles.css'),
     new webpack.optimize.UglifyJsPlugin({
       beautify: false,
       mangle: {
