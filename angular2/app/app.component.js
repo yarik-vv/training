@@ -9,10 +9,34 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
+var todos = [
+    {
+        title: 'zadacha #1',
+        completed: false
+    },
+    {
+        title: 'zadacha #2',
+        completed: true
+    },
+    {
+        title: 'zadacha #3',
+        completed: true
+    }
+];
 var AppComponent = (function () {
     function AppComponent() {
         this.title = 'Zdarova!';
+        this.todos = todos;
     }
+    AppComponent.prototype.toggle = function (item) {
+        item.completed = !item.completed;
+    };
+    AppComponent.prototype.delete = function (item) {
+        var index = this.todos.indexOf(item);
+        if (index > -1) {
+            this.todos.splice(index, 1);
+        }
+    };
     AppComponent = __decorate([
         core_1.Component({
             moduleId: module.id,
