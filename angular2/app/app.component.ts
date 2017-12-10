@@ -1,6 +1,11 @@
 import { Component } from '@angular/core';
 
-const todos = [
+class item { 
+    title: string;
+    completed: boolean; 
+}
+
+const todos: item[] = [
   {
     title: 'zadacha #1',
     completed: false
@@ -21,15 +26,16 @@ const todos = [
   templateUrl: 'app.component.html',
   styleUrls: ['app.component.css']
 })
-export class AppComponent {
-  title = 'Zdarova!';
-  todos = todos;
 
-  toggle(item: any) {
+export class AppComponent {
+  title: string = 'Zdarova!';
+  todos: item[] = todos;
+
+  toggle(item: item) {
     item.completed = !item.completed;
   }
 
-  delete(item: any) {
+  delete(item: item) {
       let index = this.todos.indexOf(item); 
 
       if(index > -1) {
