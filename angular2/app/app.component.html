@@ -3,6 +3,11 @@
 </header>
 
 <main>
+   <form class="todo-form" (ngSubmit)="create()"> 
+      <input name="titile" placeholder="Enter todo" type="text" [(ngModel)]="newItemTitle" required>
+      <button type="submit">Add</button>
+   </form>
+
    <section class="todo-list" *ngIf='todos.length'>
       <div class="todo-item" 
             *ngFor='let todo of todos' 

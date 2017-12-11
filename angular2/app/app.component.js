@@ -10,7 +10,16 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require('@angular/core');
 var item = (function () {
-    function item() {
+    // title: string;
+    // completed: boolean; 
+    // constructor(title: string, completed: boolean) {
+    //     this.title = title;
+    //     this.completed = completed; 
+    // }
+    function item(title, completed) {
+        if (completed === void 0) { completed = false; }
+        this.title = title;
+        this.completed = completed;
     }
     return item;
 }());
@@ -41,6 +50,10 @@ var AppComponent = (function () {
         if (index > -1) {
             this.todos.splice(index, 1);
         }
+    };
+    AppComponent.prototype.create = function () {
+        var newItem = new item(this.newItemTitle);
+        this.todos.push(newItem);
     };
     AppComponent = __decorate([
         core_1.Component({

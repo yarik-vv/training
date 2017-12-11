@@ -1,8 +1,18 @@
 import { Component } from '@angular/core';
 
 class item { 
-    title: string;
-    completed: boolean; 
+    // title: string;
+    // completed: boolean; 
+
+    // constructor(title: string, completed: boolean) {
+    //     this.title = title;
+    //     this.completed = completed; 
+    // }
+
+    constructor( 
+        public title: string, 
+        public completed: boolean = false
+    ) {}
 }
 
 const todos: item[] = [
@@ -42,4 +52,10 @@ export class AppComponent {
           this.todos.splice(index, 1);
       }
   }
+
+  create() { 
+    let newItem: item = new item(this.newItemTitle);  
+    this.todos.push(newItem);
+  }
+
 }
