@@ -9,20 +9,30 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
-var AppComponent = (function () {
-    function AppComponent() {
-        this.title = 'Zdarova!';
+var data_1 = require('../shared/data');
+var TodoListComponent = (function () {
+    function TodoListComponent() {
+        this.todos = data_1.todos;
     }
-    AppComponent = __decorate([
+    TodoListComponent.prototype.toggle = function (item) {
+        item.completed = !item.completed;
+    };
+    TodoListComponent.prototype.delete = function (item) {
+        var index = this.todos.indexOf(item);
+        if (index > -1) {
+            this.todos.splice(index, 1);
+        }
+    };
+    TodoListComponent = __decorate([
         core_1.Component({
             moduleId: module.id,
-            selector: 'app',
-            templateUrl: 'app.component.html',
-            styleUrls: ['app.component.css']
+            selector: 'todo-list',
+            templateUrl: 'todo-list.component.html',
+            styleUrls: ['todo-list.component.css']
         }), 
         __metadata('design:paramtypes', [])
-    ], AppComponent);
-    return AppComponent;
+    ], TodoListComponent);
+    return TodoListComponent;
 }());
-exports.AppComponent = AppComponent;
-//# sourceMappingURL=app.component.js.map
+exports.TodoListComponent = TodoListComponent;
+//# sourceMappingURL=todo-list.component.js.map

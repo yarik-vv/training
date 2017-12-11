@@ -3,45 +3,10 @@
 </header>
 
 <main>
-    <form class="todo-form"
-          (ngSubmit)="create(); todoForm.reset()"
-          #todoForm="ngForm">
+    <!-- Form component -->
+    <todo-form></todo-form>
 
-        <input name="titile"
-               placeholder="Enter todo"
-               type="text"
-               [(ngModel)]="newItemTitle"
-               required>
+    <!-- List component-->
+    <todo-list></todo-list>
 
-        <button type="submit"
-                [disabled]="todoForm.form.invalid"
-        >Add
-        </button>
-    </form>
-
-    <section class="todo-list"
-             *ngIf='todos.length'>
-
-        <div class="todo-item"
-             *ngFor='let todo of todos'
-             [class.completed]="todo.completed"
-             (click)="toggle(todo)">
-
-            <button class="checkbox icon">
-                <i class="material-icons">
-                    {{ todo.completed ? 'check_box' : 'check_box_outline_blank'}}
-                </i>
-            </button>
-
-            <span class="title"> {{ todo.title }}</span>
-
-            <div class="actions">
-                <button class="delete icon">
-                    <i (click)="delete(todo)" class="material-icons">delete</i>
-                </button>
-            </div>
-
-        </div>
-
-    </section>
 </main>

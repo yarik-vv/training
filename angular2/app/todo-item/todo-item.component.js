@@ -9,20 +9,21 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
-var AppComponent = (function () {
-    function AppComponent() {
-        this.title = 'Zdarova!';
+var todo_1 = require('../shared/todo');
+var TodoItemComponent = (function () {
+    function TodoItemComponent() {
+        this.todo = new todo_1.Todo('zdarova epta');
     }
-    AppComponent = __decorate([
+    TodoItemComponent = __decorate([
         core_1.Component({
             moduleId: module.id,
-            selector: 'app',
-            templateUrl: 'app.component.html',
-            styleUrls: ['app.component.css']
+            selector: 'todo-item',
+            templateUrl: 'todo-item.component.html',
+            styleUrls: ['todo-item.component.css']
         }), 
         __metadata('design:paramtypes', [])
-    ], AppComponent);
-    return AppComponent;
+    ], TodoItemComponent);
+    return TodoItemComponent;
 }());
-exports.AppComponent = AppComponent;
-//# sourceMappingURL=app.component.js.map
+exports.TodoItemComponent = TodoItemComponent;
+//# sourceMappingURL=todo-item.component.js.map
