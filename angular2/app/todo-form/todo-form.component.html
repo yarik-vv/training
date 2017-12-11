@@ -1,11 +1,11 @@
 <form class="todo-form"
-      (ngSubmit)="create(); todoForm.reset()"
+      (ngSubmit)="onSubmit(); todoForm.reset()"
       #todoForm="ngForm">
 
-    <input name="titile"
+    <input name="title"
            placeholder="Enter todo"
            type="text"
-           [(ngModel)]="newItemTitle"
+           [(ngModel)]="title"
            required>
 
     <button type="submit"

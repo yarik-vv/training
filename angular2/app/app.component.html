@@ -4,9 +4,9 @@
 
 <main>
     <!-- Form component -->
-    <todo-form></todo-form>
+    <todo-form (add)="create($event)"></todo-form>
 
     <!-- List component-->
-    <todo-list></todo-list>
+    <todo-list [items]="todos"></todo-list>
 
 </main>
