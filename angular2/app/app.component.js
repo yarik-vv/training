@@ -41,6 +41,7 @@ var AppComponent = (function () {
     function AppComponent() {
         this.title = 'Zdarova!';
         this.todos = todos;
+        this.newItemTitle = '';
     }
     AppComponent.prototype.toggle = function (item) {
         item.completed = !item.completed;
@@ -54,6 +55,7 @@ var AppComponent = (function () {
     AppComponent.prototype.create = function () {
         var newItem = new item(this.newItemTitle);
         this.todos.push(newItem);
+        this.newItemTitle = '';
     };
     AppComponent = __decorate([
         core_1.Component({

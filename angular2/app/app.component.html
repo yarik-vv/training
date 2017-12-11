@@ -1,31 +1,47 @@
 <header>
-   <h1>{{ title }}</h1>
+    <h1>{{ title }}</h1>
 </header>
 
 <main>
-   <form class="todo-form" (ngSubmit)="create()"> 
-      <input name="titile" placeholder="Enter todo" type="text" [(ngModel)]="newItemTitle" required>
-      <button type="submit">Add</button>
-   </form>
+    <form class="todo-form"
+          (ngSubmit)="create(); todoForm.reset()"
+          #todoForm="ngForm">
 
-   <section class="todo-list" *ngIf='todos.length'>
-      <div class="todo-item" 
-            *ngFor='let todo of todos' 
-            [class.completed]= "todo.completed"
-            (click)="toggle(todo)"> 
-         <button class="checkbox icon">
-            <i class="material-icons">
-               {{ todo.completed ? 'check_box' : 'check_box_outline_blank'}}
-            </i>
-         </button>
+        <input name="titile"
+               placeholder="Enter todo"
+               type="text"
+               [(ngModel)]="newItemTitle"
+               required>
 
-         <span class="title"> {{ todo.title }}</span>
+        <button type="submit"
+                [disabled]="todoForm.form.invalid"
+        >Add
+        </button>
+    </form>
 
-         <div class="actions">
-            <button class="delete icon">
-               <i (click)="delete(todo)" class="material-icons">delete</i>
+    <section class="todo-list"
+             *ngIf='todos.length'>
+
+        <div class="todo-item"
+             *ngFor='let todo of todos'
+             [class.completed]="todo.completed"
+             (click)="toggle(todo)">
+
+            <button class="checkbox icon">
+                <i class="material-icons">
+                    {{ todo.completed ? 'check_box' : 'check_box_outline_blank'}}
+                </i>
             </button>
-         </div>
-      </div>
-   </section>
+
+            <span class="title"> {{ todo.title }}</span>
+
+            <div class="actions">
+                <button class="delete icon">
+                    <i (click)="delete(todo)" class="material-icons">delete</i>
+                </button>
+            </div>
+
+        </div>
+
+    </section>
 </main>
