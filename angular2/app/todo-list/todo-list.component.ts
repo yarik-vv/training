@@ -1,6 +1,7 @@
-import {Component, Input} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 
-import { Todo } from '../shared/todo';
+import {Todo} from '../shared/todo';
+import {TodoService} from '../shared/todo.service';
 
 @Component({
     moduleId: module.id,
@@ -9,14 +10,22 @@ import { Todo } from '../shared/todo';
     styleUrls: ['todo-list.component.css']
 })
 
-export class TodoListComponent {
-    @Input() items: Todo[];
+export class TodoListComponent implements OnInit {
+    items: Todo[];
 
-    delete(item: Todo) {
-        let index = this.items.indexOf(item);
+    constructor(private todoService: TodoService){
+        this.items = [];
+    }
 
-        if (index > -1) {
-            this.items.splice(index, 1);
-        }
+    ngOnInit() {
+        this.items = this.todoService.getTodos();
+    }
+
+    toggle(todo: Todo) {
+        this.todoService.toggleTodo(todo);
+    }
+
+    remove(todo: Todo) {
+        this.todoService.deleteTodo(todo);
     }
 }

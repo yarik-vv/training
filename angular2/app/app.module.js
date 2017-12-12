@@ -17,6 +17,7 @@ var app_component_1 = require('./app.component');
 var todo_form_component_1 = require('./todo-form/todo-form.component');
 var todo_list_component_1 = require('./todo-list/todo-list.component');
 var todo_item_component_1 = require('./todo-item/todo-item.component');
+var todo_service_1 = require("./shared/todo.service");
 var AppModule = (function () {
     function AppModule() {
     }
@@ -31,6 +32,9 @@ var AppModule = (function () {
                 todo_form_component_1.TodoFormComponent,
                 todo_list_component_1.TodoListComponent,
                 todo_item_component_1.TodoItemComponent
+            ],
+            providers: [
+                todo_service_1.TodoService
             ],
             bootstrap: [app_component_1.AppComponent]
         }), 

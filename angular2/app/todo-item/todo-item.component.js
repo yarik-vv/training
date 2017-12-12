@@ -12,13 +12,14 @@ var core_1 = require('@angular/core');
 var todo_1 = require('../shared/todo');
 var TodoItemComponent = (function () {
     function TodoItemComponent() {
-        this.delete = new core_1.EventEmitter();
+        this.remove = new core_1.EventEmitter();
+        this.toggle = new core_1.EventEmitter();
     }
-    TodoItemComponent.prototype.toggle = function () {
-        this.todo.completed = !this.todo.completed;
+    TodoItemComponent.prototype.onToggle = function () {
+        this.toggle.emit(this.todo);
     };
     TodoItemComponent.prototype.onDelete = function () {
-        this.delete.emit(this.todo);
+        this.remove.emit(this.todo);
     };
     __decorate([
         core_1.Input(), 
@@ -27,7 +28,11 @@ var TodoItemComponent = (function () {
     __decorate([
         core_1.Output(), 
         __metadata('design:type', Object)
-    ], TodoItemComponent.prototype, "delete", void 0);
+    ], TodoItemComponent.prototype, "remove", void 0);
+    __decorate([
+        core_1.Output(), 
+        __metadata('design:type', Object)
+    ], TodoItemComponent.prototype, "toggle", void 0);
     TodoItemComponent = __decorate([
         core_1.Component({
             moduleId: module.id,
