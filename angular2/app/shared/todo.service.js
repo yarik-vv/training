@@ -37,7 +37,6 @@ var TodoService = (function () {
             .then(function (res) { return res.json().data; })
             .then(function (newTodo) { return _this.todos.push(newTodo); })
             .catch(this.handleError);
-        this.todos.push(newTodo);
     };
     TodoService.prototype.toggleTodo = function (todo) {
         // For request

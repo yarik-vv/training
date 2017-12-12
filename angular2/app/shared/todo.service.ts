@@ -32,9 +32,6 @@ export class TodoService {
             .then(res => res.json().data)
             .then(newTodo => this.todos.push(newTodo))
             .catch(this.handleError);
-
-
-        this.todos.push(newTodo);
     }
 
     toggleTodo(todo: Todo) {
@@ -57,7 +54,7 @@ export class TodoService {
         let headers = new Headers({'Content-Type': 'application/json'});
         let options = new RequestOptions({headers});
 
-        this.http.delete(url, options )
+        this.http.delete(url, options)
             .toPromise()
             .then(res => {
                 let index = this.todos.indexOf(todo);

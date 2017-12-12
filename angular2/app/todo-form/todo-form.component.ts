@@ -14,7 +14,7 @@ export class TodoFormComponent implements OnInit {
     items: Todo[];
     title: string = '';
 
-    constructor(private todoService: TodoService){
+    constructor(private todoService: TodoService) {
         this.items = [];
     }
 

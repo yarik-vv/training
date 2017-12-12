@@ -7,7 +7,7 @@ export class Todo {
     //     this.completed = completed;
     // }
 
-    id:number;
+    id: number;
 
     constructor(public title: string,
                 public completed: boolean = false) {

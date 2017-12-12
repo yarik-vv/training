@@ -1,7 +1,7 @@
 <div class="todo-list" *ngIf='items.length'>
     <todo-item
             *ngFor="let todo of items"
-             [todo]="todo"
+            [todo]="todo"
             (remove)="remove($event)"
             (toggle)="toggle($event)">
     </todo-item>

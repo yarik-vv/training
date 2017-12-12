@@ -33,6 +33,6 @@ import {TodoService} from "./shared/todo.service";
     bootstrap: [AppComponent]
 })
 
- export class AppModule {
+export class AppModule {
 
 }

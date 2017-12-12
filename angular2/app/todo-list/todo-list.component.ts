@@ -13,7 +13,7 @@ import {TodoService} from '../shared/todo.service';
 export class TodoListComponent implements OnInit {
     items: Todo[];
 
-    constructor(private todoService: TodoService){
+    constructor(private todoService: TodoService) {
         this.items = [];
     }
 
