@@ -16,7 +16,8 @@ var TodoListComponent = (function () {
         this.items = [];
     }
     TodoListComponent.prototype.ngOnInit = function () {
-        this.items = this.todoService.getTodos();
+        var _this = this;
+        this.todoService.getTodos().then(function (items) { return _this.items = items; });
     };
     TodoListComponent.prototype.toggle = function (todo) {
         this.todoService.toggleTodo(todo);

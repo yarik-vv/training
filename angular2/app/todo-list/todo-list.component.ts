@@ -18,7 +18,7 @@ export class TodoListComponent implements OnInit {
     }
 
     ngOnInit() {
-        this.items = this.todoService.getTodos();
+        this.todoService.getTodos().then(items => this.items = items);
     }
 
     toggle(todo: Todo) {
